@@ -1,11 +1,11 @@
 # Project CyberWatch: SOC Infrastructure & Unified EDR Deployment
 
-## 🏗️ Architectural Vision
+## Architectural Vision
 Project CyberWatch is an end-to-end Security Operations Center (SOC) engineering lab. The primary objective was to move beyond static log analysis and architect a **Live Telemetry Pipeline**. I engineered a centralized "Security Brain" using Wazuh (SIEM/XDR) on Ubuntu and established a high-fidelity monitoring bridge to a Windows 11 endpoint. 
 
 This project demonstrates the ability to deploy complex security infrastructure, manage cross-platform systems integration, and validate defense mechanisms through adversary simulation.
 
-## 🛠️ The Engineering Stack
+## The Engineering Stack
 * **SIEM/XDR Platform:** Wazuh v4.x (Manager & Indexer)
 * **Security Architecture:** Centralized Manager-Agent Model
 * **Hypervisor:** UTM (Virtualized environment for Apple Silicon)
@@ -28,7 +28,7 @@ The core challenge was establishing a persistent connection between the Windows 
 
 ---
 
-## 🛡️ Phase 2: Adversary Simulation & Response
+## Phase 2: Adversary Simulation & Response
 
 ### Automated Brute Force Attack (PoC)
 To validate the infrastructure’s detection logic, I executed an adversary simulation. Using an automated PowerShell loop, I targeted the SMB service with high-frequency authentication failures, intentionally triggering **Event ID 4625** (Logon Failure).
