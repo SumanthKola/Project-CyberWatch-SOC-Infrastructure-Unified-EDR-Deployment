@@ -14,7 +14,7 @@ This project demonstrates the ability to deploy complex security infrastructure,
 
 ---
 
-## 🔧 Phase 1: Infrastructure Engineering & System Integration
+## Phase 1: Infrastructure Engineering & System Integration
 
 ### Centralized Management Deployment
 I provisioned and hardened a Linux-based Wazuh Manager to serve as the project's central nervous system. This phase involved configuring the internal networking to ensure a stable communication path for incoming telemetry while resolving hardware-level virtualization hurdles.
