@@ -5,6 +5,8 @@ Project CyberWatch is an end-to-end Security Operations Center (SOC) engineering
 
 This project demonstrates the ability to deploy complex security infrastructure, manage cross-platform systems integration, and validate defense mechanisms through adversary simulation.
 
+![Infrastructure Overview](images/01_Infrastructure_Overview.png)
+
 ## The Engineering Stack
 * **SIEM/XDR Platform:** Wazuh v4.x (Manager & Indexer)
 * **Security Architecture:** Centralized Manager-Agent Model
