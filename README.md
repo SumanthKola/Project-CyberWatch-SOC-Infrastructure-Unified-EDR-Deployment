@@ -40,6 +40,28 @@ The core challenge was establishing a persistent connection between the Windows 
 To validate the infrastructure’s detection logic, I executed an adversary simulation. Using an automated PowerShell loop, I targeted the SMB service with high-frequency authentication failures, intentionally triggering **Event ID 4625** (Logon Failure).
 
 **Adversary Script:**
-```powershell
+`powershell
 # Executing high-frequency authentication attempts to trigger SIEM correlation
 1..15 | ForEach-Object { net use Z: \\127.0.0.1\c$ /user:Admin fake-password-$_ 2>$null }
+
+![Attack Script Execution](images/03_Attack_Script.png)
+*Figure 3: Execution of the PowerShell adversary simulation loop.*
+
+### Incident Analysis & Threat Hunting
+The CyberWatch pipeline successfully ingested the raw logs and triggered **Rule 60122** (Multiple logon failures). I performed a deep-dive analysis in the **Threat Hunting** module, correlating the hits to the **MITRE ATT&CK Framework: T1110 (Brute Force)**.
+
+![SIEM Log Analysis](images/04_Threat_Hunting_Logs.png)
+*Figure 4: Granular log analysis identifying the target account (Admin) and source IP (127.0.0.1).*
+
+---
+
+## 📈 Outcomes & Professional Growth
+* **Engineering vs. Analysis:** Successfully transitioned from a "Data Consumer" (Analyst) to a "System Creator" (Engineer) by building the entire log pipeline from scratch.
+* **Cross-Platform Mastery:** Bridged communication between Linux and Windows architectures within a virtualized environment to create a unified security view.
+* **Resourcefulness:** Resolved complex Apple Silicon virtualization conflicts and driver instabilities, ensuring stable deployment of enterprise-grade security tools.
+* **Analytical Precision:** Successfully identified the specific target account (Admin) and source IP from 1,700+ raw telemetry events, demonstrating high-fidelity log correlation.
+
+---
+## 🔗 Connect with Me
+* **LinkedIn:** [Your Link Here]
+* **Email:** [Your Email Here]
