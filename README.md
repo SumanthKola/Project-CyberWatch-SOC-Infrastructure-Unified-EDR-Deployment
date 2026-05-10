@@ -57,20 +57,41 @@ The CyberWatch pipeline successfully ingested the raw logs and triggered **Rule 
 
 ---
 
-## Outcomes & Learning
+## 📈 Outcomes & Project Results
 
-* **Security Architecture:** Deployed a high-fidelity telemetry pipeline across disparate operating systems (Linux/Windows), managing the full security stack from endpoint services to centralized log ingestion.
-* **Operational Resilience:** Successfully navigated complex virtualization and driver conflicts on ARM64 architecture, ensuring 100% service uptime and cross-platform technical parity.
-* **Detection Engineering:** Validated SIEM logic by simulating a **MITRE T1110 (Brute Force)** attack via PowerShell, effectively distinguishing malicious patterns from background noise.
-* **Advanced Data Analysis:** Performed granular correlation on 1,700+ events to isolate a single high-fidelity incident, demonstrating the ability to pinpoint source IPs and targeted accounts in a production-style environment.
+The primary success of this project was the transition from theoretical security concepts to a functional SOC lab environment with real-time telemetry visibility. Key outcomes include:
+
+* **Improved Endpoint Visibility:** Built a real-time telemetry pipeline between Linux and Windows systems, enabling centralized monitoring similar to enterprise SOC environments.
+
+* **Operational Resilience:** Resolved ARM64 virtualization and driver-level issues, ensuring stable and consistent communication between the Wazuh manager and endpoint agents.
+
+* **Validated Detection Logic:** Tested SIEM rules through controlled adversary simulation. Identified and correlated **MITRE T1110 (Brute Force)** activity within 1,700+ generated events, confirming alert accuracy and detection reliability.
+
+* **Technical Troubleshooting:** Strengthened skills in network debugging and service management, including configuration and validation of ports 1514/1515 in a virtualized environment.
 
 ---
 
-## Technical Competencies
-* **SIEM/XDR Operations:** Wazuh Manager/Indexer configuration and alert tuning.
-* **Endpoint Defense:** EDR Agent deployment, Windows Service management, and PowerShell scripting.
-* **Network Security:** Bridge interface management and port-level communication (1514/1515).
-* **Frameworks:** Practical application of MITRE ATT&CK and Windows Event ID analysis.
+## Key Skills & Competencies Demonstrated
+
+### Security Engineering & Operations
+* SIEM/XDR deployment using Wazuh (Manager, Indexer, Dashboard)
+* Endpoint Detection & Response (EDR) agent setup and monitoring
+* Threat detection mapping using MITRE ATT&CK framework
+
+### Systems & Network Administration
+* Cross-platform integration between Ubuntu and Windows systems
+* PowerShell scripting for system testing and controlled attack simulation
+* Network troubleshooting and secure communication between endpoints
+* Linux system administration and service management
+
+---
+
+## Summary
+
+This project demonstrates practical SOC engineering skills, including SIEM deployment, endpoint monitoring, threat simulation, and log analysis in a controlled lab environment.
+
+It also aligns with core cybersecurity principles covered in **CompTIA Security+**, particularly in areas such as threat detection, secure architecture design, and incident analysis.
+
 
 ---
 
