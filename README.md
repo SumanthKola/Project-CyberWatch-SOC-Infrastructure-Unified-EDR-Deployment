@@ -57,7 +57,7 @@ The CyberWatch pipeline successfully ingested the raw logs and triggered **Rule 
 
 ---
 
-## 📈 Outcomes & Project Results
+## Outcomes & Project Results
 
 The primary success of this project was the transition from theoretical security concepts to a functional SOC lab environment with real-time telemetry visibility. Key outcomes include:
 
