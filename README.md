@@ -74,15 +74,15 @@ The primary success of this project was the transition from theoretical security
 ## Key Skills & Competencies Demonstrated
 
 ### Security Engineering & Operations
-* SIEM/XDR deployment using Wazuh (Manager, Indexer, Dashboard)
-* Endpoint Detection & Response (EDR) agent setup and monitoring
-* Threat detection mapping using MITRE ATT&CK framework
+* Deployment and configuration of Wazuh SIEM/XDR (Manager, Indexer, Dashboard)
+* Setup and monitoring of Endpoint Detection & Response (EDR) agents
+* Applied MITRE ATT&CK framework for threat detection and analysis
 
 ### Systems & Network Administration
-* Cross-platform integration between Ubuntu and Windows systems
-* PowerShell scripting for system testing and controlled attack simulation
-* Network troubleshooting and secure communication between endpoints
-* Linux system administration and service management
+* Cross-platform integration between Ubuntu (Linux) and Windows environments
+* PowerShell scripting for system administration and controlled attack simulation
+* Network troubleshooting and secure endpoint communication
+* Linux system administration, service management, and log handling
 
 ---
 
