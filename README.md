@@ -56,7 +56,6 @@ The CyberWatch pipeline successfully ingested the raw logs and triggered **Rule 
 ---
 
 ## Outcomes & Learning
-Through the successful execution of this lab, I established an enterprise-grade security monitoring baseline by engineering the following:
 
 * **Security Architecture:** Deployed a high-fidelity telemetry pipeline across disparate operating systems (Linux/Windows), managing the full security stack from endpoint services to centralized log ingestion.
 * **Operational Resilience:** Successfully navigated complex virtualization and driver conflicts on ARM64 architecture, ensuring 100% service uptime and cross-platform technical parity.
