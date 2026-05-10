@@ -1,5 +1,7 @@
 # Project CyberWatch: SOC Infrastructure & Unified EDR Deployment
 
+Built a centralized SOC monitoring environment using Wazuh SIEM/XDR on Ubuntu to monitor Windows 11 endpoint telemetry. Simulated brute-force attacks with PowerShell and validated detections through MITRE ATT&CK-aligned incident analysis.
+
 ## Architectural Vision
 Project CyberWatch is a comprehensive Security Operations Center (SOC) engineering lab. The primary objective was to move beyond static log analysis and architect a **Live Telemetry Pipeline**. I engineered a centralized "Security Brain" using Wazuh (SIEM/XDR) on Ubuntu and established a high-fidelity monitoring bridge to a Windows 11 endpoint.
 
@@ -28,7 +30,7 @@ I provisioned and hardened a Linux-based Wazuh Manager to serve as the project's
 The core challenge was establishing a persistent connection between the Windows 11 target and the Linux Manager.
 
 * **The Problem:** Overcoming ARM64-specific driver instabilities and service enrollment failures.
-* **The Solution:** Leveraged Administrative PowerShell to force-start security services, verify agent enrollment, and ensure 100% telemetry persistence.
+* **The Solution:** Leveraged Administrative PowerShell to force-start security services, verify agent enrollment, and ensure stable telemetry ingestion.
 
 ![Agent Handshake Proof](images/02_Agent_Handshake.png)
 *Figure 2: Successful handshake confirming the 'Wazuh' service is active on the Windows endpoint.*
