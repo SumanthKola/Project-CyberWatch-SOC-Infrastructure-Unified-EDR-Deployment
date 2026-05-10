@@ -1,75 +1,212 @@
 # Project CyberWatch: SOC Infrastructure & Unified EDR Deployment
 
-## Architectural Vision
-Project CyberWatch is a comprehensive Security Operations Center (SOC) engineering lab. The primary objective was to move beyond static log analysis and architect a **Live Telemetry Pipeline**. I engineered a centralized "Security Brain" using Wazuh (SIEM/XDR) on Ubuntu and established a high-fidelity monitoring bridge to a Windows 11 endpoint. 
+## Overview
 
-This project demonstrates the ability to deploy complex security infrastructure, manage cross-platform systems integration, and validate defense mechanisms through adversary simulation.
+Built a centralized SOC monitoring environment using Wazuh SIEM/XDR on Ubuntu to monitor Windows 11 endpoint telemetry. Simulated brute-force attacks with PowerShell and validated detections through MITRE ATT&CK-aligned incident analysis.
 
-![Dashboard Overview](images/01_Infrastructure_Overview.png)
-*Figure 1: The centralized CyberWatch Dashboard monitoring live endpoint telemetry.*
-
----
-
-## The Engineering Stack
-* **SIEM/XDR Platform:** Wazuh v4.x (Manager & Indexer)
-* **Security Architecture:** Centralized Manager-Agent Model
-* **Hypervisor:** UTM (Virtualized environment for Apple Silicon)
-* **Infrastructure:** Ubuntu 22.04 LTS (Security Engine) | Windows 11 (Telemetry Source)
-* **Networking:** Configured virtualized network bridges for inter-VM communication.
+This project demonstrates hands-on experience in:
+- SIEM deployment and configuration
+- Cross-platform systems integration
+- Threat detection engineering
+- Security event correlation
+- Windows and Linux administration
+- SOC-style incident analysis
 
 ---
 
-## Phase 1: Infrastructure Engineering & System Integration
+# Dashboard Overview
 
-### Centralized Management Deployment
-I provisioned and hardened a Linux-based Wazuh Manager to serve as the project's central nervous system. This phase involved configuring the internal networking to ensure a stable communication path for incoming telemetry while resolving hardware-level virtualization hurdles.
+![CyberWatch Dashboard](images/dashboard.png)
 
-### The Endpoint "Handshake"
-The core challenge was establishing a persistent connection between the Windows 11 target and the Linux Manager. 
-* **The Problem:** Overcoming ARM64-specific driver instabilities and service enrollment failures.
-* **The Solution:** Leveraged Administrative PowerShell to force-start security services, verify agent enrollment, and ensure 100% telemetry persistence.
-
-![Agent Handshake Proof](images/02_Agent_Handshake.png)
-*Figure 2: Successful handshake confirming the 'Wazuh' service is active on the Windows endpoint.*
+**Figure 1:** Centralized CyberWatch dashboard monitoring live endpoint telemetry.
 
 ---
 
-## Phase 2: Adversary Simulation & Response
+# The Engineering Stack
 
-### Automated Brute Force Attack (PoC)
-To validate the infrastructure’s detection logic, I executed an adversary simulation. Using an automated PowerShell loop, I targeted the SMB service with high-frequency authentication failures, intentionally triggering **Event ID 4625** (Logon Failure).
-
-**Adversary Script:**
-`powershell
-# Executing high-frequency authentication attempts to trigger SIEM correlation
-1..15 | ForEach-Object { net use Z: \\127.0.0.1\c$ /user:Admin fake-password-$_ 2>$null }
-
-![Attack Script Execution](images/03_Attack_Script.png)
-*Figure 3: Execution of the PowerShell adversary simulation loop.*
-
-### Incident Analysis & Threat Hunting
-The CyberWatch pipeline successfully ingested the raw logs and triggered **Rule 60122** (Multiple logon failures). I performed a deep-dive analysis in the **Threat Hunting** module, correlating the hits to the **MITRE ATT&CK Framework: T1110 (Brute Force)**.
-
-![SIEM Log Analysis](images/04_Threat_Hunting_Logs.png)
-*Figure 4: Granular log analysis identifying the target account (Admin) and source IP (127.0.0.1).*
+| Component | Technology |
+|---|---|
+| SIEM/XDR Platform | Wazuh v4.x |
+| Security Architecture | Centralized Manager-Agent Model |
+| Hypervisor | UTM (Apple Silicon Virtualization) |
+| Infrastructure | Ubuntu 22.04 LTS + Windows 11 |
+| Networking | Virtualized bridge networking |
+| Scripting | PowerShell |
 
 ---
 
-## Outcomes & Learning
-Through the successful execution of this lab, I established an enterprise-grade security monitoring baseline by engineering the following:
+# Project Structure
 
-* **Security Architecture:** Deployed a high-fidelity telemetry pipeline across disparate operating systems (Linux/Windows), managing the full security stack from endpoint services to centralized log ingestion.
-* **Operational Resilience:** Successfully navigated complex virtualization and driver conflicts on ARM64 architecture, ensuring 100% service uptime and cross-platform technical parity.
-* **Detection Engineering:** Validated SIEM logic by simulating a **MITRE T1110 (Brute Force)** attack via PowerShell, effectively distinguishing malicious patterns from background noise.
-* **Advanced Data Analysis:** Performed granular correlation on 1,700+ events to isolate a single high-fidelity incident, demonstrating the ability to pinpoint source IPs and targeted accounts in a production-style environment.
-
-## Technical Competencies
-* **SIEM/XDR Operations:** Wazuh Manager/Indexer configuration and alert tuning.
-* **Endpoint Defense:** EDR Agent deployment, Windows Service management, and PowerShell scripting.
-* **Network Security:** Bridge interface management and port-level communication (1514/1515).
-* **Frameworks:** Practical application of MITRE ATT&CK and Windows Event ID analysis.
+```text
+Project-CyberWatch/
+│
+├── images/
+│   ├── dashboard.png
+│   ├── handshake.png
+│   ├── attack-execution.png
+│   └── threat-analysis.png
+│
+├── scripts/
+│   └── brute-force-simulation.ps1
+│
+├── configs/
+│   └── wazuh-agent-config.txt
+│
+└── README.md
+```
 
 ---
-## Connect with Me
-* **LinkedIn:** https://www.linkedin.com/in/sumanthkola/
-* **Email:** sumanthkola.17@gmail.com
+
+# Phase 1: Infrastructure Engineering & System Integration
+
+## Centralized Management Deployment
+
+Provisioned and configured a Linux-based Wazuh Manager to serve as the project's centralized security monitoring platform. Configured internal VM networking to establish stable communication between Windows endpoints and the SIEM infrastructure.
+
+Key tasks included:
+- Wazuh Manager installation and configuration
+- Virtualized network bridge setup
+- Port communication validation (1514/1515)
+- Linux service management and troubleshooting
+- Cross-platform endpoint integration
+
+---
+
+## The Endpoint "Handshake"
+
+The primary challenge involved establishing stable communication between the Windows 11 endpoint and the Ubuntu-based Wazuh Manager.
+
+### Challenges
+- ARM64 virtualization driver instability
+- Wazuh agent enrollment failures
+- Windows service startup issues
+
+### Solutions
+- Used Administrative PowerShell for service management
+- Verified Wazuh agent enrollment manually
+- Validated consistent telemetry ingestion
+- Troubleshot endpoint communication failures
+
+![Agent Handshake](images/handshake.png)
+
+**Figure 2:** Successful Windows endpoint enrollment and active Wazuh service communication.
+
+---
+
+# Phase 2: Adversary Simulation & Detection Engineering
+
+## Automated Brute Force Attack Simulation
+
+To validate SIEM detection logic, a PowerShell-based brute-force simulation was executed against the SMB service. The attack intentionally generated multiple Windows Event ID 4625 authentication failures.
+
+### PowerShell Adversary Simulation
+
+```powershell
+1..15 | ForEach-Object {
+    net use Z: \\127.0.0.1\c$ /user:Admin fake-password-$_ 2>$null
+}
+```
+
+![Attack Simulation](images/attack-execution.png)
+
+**Figure 3:** Execution of the PowerShell brute-force simulation.
+
+---
+
+# Incident Analysis & Threat Hunting
+
+The CyberWatch pipeline successfully ingested endpoint logs and triggered Wazuh Rule 60122 for multiple authentication failures.
+
+Threat hunting analysis identified:
+- Source IP address
+- Targeted user account
+- Authentication failure patterns
+- Correlated attack timeline
+
+Mapped detection to:
+- MITRE ATT&CK Technique: **T1110 – Brute Force**
+
+![Threat Hunting Analysis](images/threat-analysis.png)
+
+**Figure 4:** Wazuh threat hunting analysis identifying brute-force activity.
+
+---
+
+# Key Skills Demonstrated
+
+- SIEM/XDR deployment and configuration
+- Windows endpoint monitoring
+- Linux server administration
+- PowerShell scripting
+- Threat detection engineering
+- MITRE ATT&CK framework mapping
+- Windows Event ID analysis
+- Security event correlation
+- Cross-platform troubleshooting
+- Network communication debugging
+
+---
+
+# Outcomes & Learning
+
+Through this project, I successfully:
+
+- Engineered a centralized SOC-style telemetry pipeline
+- Integrated Windows and Linux systems for security monitoring
+- Simulated adversary behavior to validate detection logic
+- Performed event correlation and incident investigation
+- Troubleshot virtualization and networking challenges on ARM64 architecture
+- Analyzed 1,700+ security events to isolate malicious authentication activity
+
+---
+
+# Future Improvements
+
+Planned enhancements for future iterations:
+
+- Integrate Sysmon for enhanced Windows telemetry
+- Add Suricata IDS integration
+- Develop custom Wazuh detection rules
+- Automate agent deployment with PowerShell
+- Expand monitoring to multiple Windows endpoints
+- Implement automated alert escalation workflows
+
+---
+
+# Technical Competencies
+
+## Security Operations
+- Wazuh SIEM/XDR
+- Threat hunting
+- Event correlation
+- Alert validation
+
+## Operating Systems
+- Ubuntu 22.04 LTS
+- Windows 11
+
+## Networking
+- Virtual bridge networking
+- Port communication troubleshooting
+- Endpoint connectivity validation
+
+## Scripting & Automation
+- PowerShell scripting
+- Windows service management
+
+## Security Frameworks
+- MITRE ATT&CK
+- Windows Event ID analysis
+
+---
+
+# Connect With Me
+
+- LinkedIn: https://www.linkedin.com/in/sumanthkola/
+- Email: sumanthkola.17@gmail.com
+
+---
+
+# About
+
+A full-scale SOC engineering lab focused on centralized SIEM monitoring, endpoint telemetry ingestion, attack simulation, and threat detection analysis using Wazuh and Windows endpoints.
