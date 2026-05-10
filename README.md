@@ -43,7 +43,7 @@ The core challenge was establishing a persistent connection between the Windows 
 To validate the infrastructure’s detection logic, I executed an adversary simulation. Using an automated PowerShell loop, I targeted the SMB service with high-frequency authentication failures, intentionally triggering **Event ID 4625** (Logon Failure).
 
 **Adversary Script:**
-# Executing high-frequency authentication attempts to trigger SIEM correlation
+## Executing high-frequency authentication attempts to trigger SIEM correlation
 1..15 | ForEach-Object { net use Z: \\127.0.0.1\c$ /user:Admin fake-password-$_ 2>$null }
 
 ![Attack Script Execution](images/03_Attack_Script.png)
